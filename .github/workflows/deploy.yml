@@ -35,17 +35,11 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy Assets and Fix All Paths
+      - name: Copy Assets
         run: |
           cp -r game dist/ || true
           cp -r static dist/ || true
           find node_modules/ -name "*wdosbox*" -exec cp {} dist/ \; || true
-          sed -i 's|"/game/|"./game/|g' dist/*.js || true
-          sed -i 's|"/static/|"./static/|g' dist/*.js || true
-          sed -i 's|"/wdosbox| "./wdosbox|g' dist/*.js || true
-          sed -i 's|wdosbox.js|./wdosbox.js|g' dist/*.js || true
-          sed -i 's|src="/|src="./|g' dist/index.html || true
-          sed -i 's|href="/|href="./|g' dist/index.html || true
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
