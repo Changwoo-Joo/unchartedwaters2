@@ -35,10 +35,12 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy Assets and Fix Paths
+      - name: Copy Assets and Fix All Paths
         run: |
           cp -r game dist/ || true
           cp -r static dist/ || true
+          sed -i 's|"/game/|"./game/|g' dist/*.js || true
+          sed -i 's|"/static/|"./static/|g' dist/*.js || true
           sed -i 's|src="/|src="./|g' dist/index.html || true
           sed -i 's|href="/|href="./|g' dist/index.html || true
 
