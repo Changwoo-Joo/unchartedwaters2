@@ -35,11 +35,13 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy Assets
+      - name: Fix Assets and Subpath
         run: |
           cp -r game dist/ || true
           cp -r static dist/ || true
           find node_modules/ -name "*wdosbox*" -exec cp {} dist/ \; || true
+          sed -i 's|src="/|src="/unchartedwaters2/|g' dist/index.html || true
+          sed -i 's|href="/|href="/unchartedwaters2/|g' dist/index.html || true
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
