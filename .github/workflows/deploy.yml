@@ -33,12 +33,14 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build -- --public-url /unchartedwaters2/
+        run: npm run build
 
-      - name: Copy Game Assets
+      - name: Copy Assets and Fix Paths
         run: |
-          cp -r game dist/
-          cp -r static dist/
+          cp -r game dist/ || true
+          cp -r static dist/ || true
+          sed -i 's|src="/|src="./|g' dist/index.html || true
+          sed -i 's|href="/|href="./|g' dist/index.html || true
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -46,8 +48,4 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          path: './
