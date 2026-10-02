@@ -1,6 +1,7 @@
 {
   "name": "unchartedwater2",
   "version": "0.5.4",
+  "homepage": "https://changwoo-joo.github.io/unchartedwaters2/",
   "type": "module",
   "private": true,
   "scripts": {
