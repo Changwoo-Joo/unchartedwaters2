@@ -27,14 +27,18 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'npm'
+          node-version: 20
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build
-        run: npm run build
+        run: npm run build -- --public-url /unchartedwaters2/
+
+      - name: Copy Game Assets
+        run: |
+          cp -r game dist/
+          cp -r static dist/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
