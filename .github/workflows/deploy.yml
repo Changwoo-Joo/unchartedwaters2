@@ -34,8 +34,8 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npx parcel build index.html --public-url ./
-     
+        run: npm run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
