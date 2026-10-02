@@ -39,6 +39,7 @@ jobs:
         run: |
           cp -r game dist/ || true
           cp -r static dist/ || true
+          find node_modules/ -name "*wdosbox*" -exec cp {} dist/ \; || true
           sed -i 's|"/game/|"./game/|g' dist/*.js || true
           sed -i 's|"/static/|"./static/|g' dist/*.js || true
           sed -i 's|"/wdosbox| "./wdosbox|g' dist/*.js || true
